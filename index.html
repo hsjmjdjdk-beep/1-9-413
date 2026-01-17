@@ -59,7 +59,7 @@ src="https://www.facebook.com/tr?id=701642666216234&ev=PageView&noscript=1"
     </style>
 </head>
 <body class="bg-light text-dark antialiased">
-    <!-- 导航栏 -->
+    <!-- 导航栏（已移除中文“联系”按钮） -->
     <header class="sticky top-0 bg-white/90 backdrop-blur-sm shadow-sm z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2">
@@ -74,9 +74,11 @@ src="https://www.facebook.com/tr?id=701642666216234&ev=PageView&noscript=1"
                     <i class="fa fa-whatsapp"></i> Añádenos en WhatsApp
                 </a>
             </div>
-            <button class="md:hidden text-dark text-2xl">
-                <i class="fa fa-bars"></i>
-            </button>
+            <div class="md:hidden">
+                <button class="text-dark text-2xl">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 
