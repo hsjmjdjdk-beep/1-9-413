@@ -79,7 +79,7 @@ src="https://www.facebook.com/tr?id=1641508960539560&ev=PageView&noscript=1"
         </div>
     </header>
 
-    <!-- 英雄区（核心转化引导，WhatsApp按钮添加唯一ID） -->
+    <!-- 英雄区（核心转化引导，WhatsApp按钮添加唯一ID + 追踪class） -->
     <section class="bg-gradient-to-r from-primary to-[#3B82F6] text-white section-padding">
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/2 space-y-6">
@@ -96,8 +96,8 @@ src="https://www.facebook.com/tr?id=1641508960539560&ev=PageView&noscript=1"
                     <br>
                     <i class="fa fa-check-circle text-secondary mr-2"></i> Soporte financiero experto 24/7
                 </p>
-                <!-- 核心WhatsApp引导按钮（添加唯一ID：whatsappContactBtn，用于绑定事件） -->
-                <a id="whatsappContactBtn" href="https://wa.me/85295611357?text=Me gustaría saber sobre acciones de alta calidad con potencial de crecimiento. ¿Podrías recomendarme alguna?"  target="_blank" class="btn-whatsapp w-full md:w-auto">
+                <!-- 核心WhatsApp引导按钮（保留原有ID，新增统一追踪class：whatsapp-track-btn） -->
+                <a id="whatsappContactBtn" class="whatsapp-track-btn btn-whatsapp w-full md:w-auto" href="https://wa.me/85295611357?text=Me gustaría saber sobre acciones de alta calidad con potencial de crecimiento. ¿Podrías recomendarme alguna?"  target="_blank">
                     <i class="fa fa-whatsapp text-2xl"></i>
                     Añádenos en WhatsApp
                 </a>
@@ -176,7 +176,8 @@ src="https://www.facebook.com/tr?id=1641508960539560&ev=PageView&noscript=1"
                             <span>Oportunidades de inversión a corto, medio y largo plazo</span>
                         </li>
                     </ul>
-                    <a href="https://wa.me/85295611357?text=Me gustaría saber sobre acciones de alta calidad con potencial de crecimiento. ¿Podrías recomendarme alguna?"  target="_blank" class="btn-whatsapp w-full md:w-auto">
+                    <!-- 市场板块WhatsApp按钮（添加统一追踪class：whatsapp-track-btn） -->
+                    <a class="whatsapp-track-btn btn-whatsapp w-full md:w-auto" href="https://wa.me/85295611357?text=Me gustaría saber sobre acciones de alta calidad con potencial de crecimiento. ¿Podrías recomendarme alguna?"  target="_blank">
                         <i class="fa fa-whatsapp"></i>
                         Añádenos en WhatsApp
                     </a>
@@ -234,14 +235,15 @@ src="https://www.facebook.com/tr?id=1641508960539560&ev=PageView&noscript=1"
         </div>
     </section>
 
-    <!-- 底部转化板块（再次强化WhatsApp引导） -->
+    <!-- 底部转化板块（再次强化WhatsApp引导，添加追踪class） -->
     <section id="contacto" class="bg-gradient-to-r from-primary to-[#3B82F6] text-white section-padding">
         <div class="container mx-auto px-4 text-center space-y-8">
             <h2 class="text-3xl md:text-5xl font-bold">¿Listo para Empezar Tu Viaje de Inversión?</h2>
             <p class="text-lg md:text-xl max-w-3xl mx-auto opacity-90">
                 No pierdas más tiempo, el mercado bursátil español espera por ti. Añade nos en WhatsApp hoy mismo y obtén acceso a nuestro servicio GRATIS durante 7 días.
             </p>
-            <a href="https://wa.me/85295611357?text=Me gustaría saber sobre acciones de alta calidad con potencial de crecimiento. ¿Podrías recomendarme alguna?"  target="_blank" class="btn-whatsapp mx-auto">
+            <!-- 底部转化板块WhatsApp按钮（添加统一追踪class：whatsapp-track-btn） -->
+            <a class="whatsapp-track-btn btn-whatsapp mx-auto" href="https://wa.me/85295611357?text=Me gustaría saber sobre acciones de alta calidad con potencial de crecimiento. ¿Podrías recomendarme alguna?"  target="_blank">
                 <i class="fa fa-whatsapp text-2xl"></i>
                 Añádenos en WhatsApp
             </a>
@@ -307,11 +309,13 @@ src="https://www.facebook.com/tr?id=1641508960539560&ev=PageView&noscript=1"
             }
         });
 
-        // 绑定fbq('track', 'Contact')到WhatsApp核心转化按钮
-        document.getElementById('whatsappContactBtn').addEventListener('click', function() {
-            // 触发Facebook Pixel Contact事件追踪
-            fbq('track', 'Contact');
-        }, false);
+        // 批量绑定所有WhatsApp按钮的Facebook Pixel Contact事件追踪（核心修改）
+        document.querySelectorAll('.whatsapp-track-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 触发Facebook Pixel Contact事件追踪
+                fbq('track', 'Contact');
+            }, false);
+        });
     </script>
 </body>
 </html>
